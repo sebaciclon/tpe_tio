@@ -7,7 +7,7 @@ define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] 
 
 //defino una accion por defecto
 if(empty($_GET['action'])){
-    $_GET['action'] = 'loguearse';
+    $_GET['action'] = 'registrarse';
 }
 $accion = $_GET['action'];
 
@@ -15,19 +15,15 @@ $parametros = explode('/', $accion);
 
 switch($parametros[0]){
 
-    case 'loguearse': {
+    case 'registrarse': {
         $controller = new AdminController();  
-        $controller->loginAdmin();
+        $controller->checkIn();
     break;
     }
-    case 'home': {
-        $controller = new PublicController();     
-        $controller->home();
-    break;
-    }
+    
     default: {
-        $controller = new PublicController();     
-        $controller->showError("Se ha ejecutado una acción desconocida","images/errores/accion_desconocida.jpg");
+        $controller = new AdminController();     
+        $controller->showMessage("Se ha ejecutado una acción desconocida","images/errores/accion_desconocida.jpg");
     }    
 }
     
