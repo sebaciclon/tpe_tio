@@ -7,13 +7,19 @@ define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] 
 
 //defino una accion por defecto
 if(empty($_GET['action'])){
-    $_GET['action'] = 'registrarse';
+    $_GET['action'] = 'home';
 }
 $accion = $_GET['action'];
 
 $parametros = explode('/', $accion);
 
 switch($parametros[0]){
+
+    case 'home': {
+        $controller = new AdminController();  
+        $controller->home();
+    break;
+    }
 
     case 'registrarse': {
         $controller = new AdminController();  
