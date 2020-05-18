@@ -19,7 +19,27 @@ class AdminController{
     }
 
         public function checkIn(){
-            echo "Estoy en la función checkIn";
+            if(empty($_POST['name']) || empty($_POST['username']) || empty($_POST['psw'])) {   
+                echo "No ingreso todos los datos requeridos";
+                
+            } else {
+                $name = $_POST['name'];
+                $username = $_POST['username'];
+                $password = $_POST['psw'];
+                $usuarios = $this->model->getAllAdmin();
+                            
+                $longitud = count($usuarios);
+                for($i = 0; $i < $longitud; $i ++) {
+                    if($usuarios[$i]->usuario == $username) {
+                        echo "El nombre de usuario " .$username. " Ya existia en la base de datos, vuelva a intentarlo";
+                        die();
+                    } 
+                }
+                if($i == $longitud) {
+                    $this->model->saveUser($name, $username, $password);
+                    echo "Usuario guardado correctamente";
+                }
+            }
         }
 
 

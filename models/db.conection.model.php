@@ -7,7 +7,7 @@
             $host = 'localhost';
             $userName = "root";
             $password = '';
-            $dataBase = 'db_san_lorenzo_rauch';
+            $dataBase = 'tpe_tio';
             try {
                 $pdo = new PDO("mysql:host=$host;dbname=$dataBase;charset=utf8", $userName, $password);
             } catch (Exception  $e){
