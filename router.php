@@ -29,7 +29,7 @@ switch($parametros[0]){
     
     default: {
         $controller = new AdminController();     
-        $controller->showMessage("Se ha ejecutado una acción desconocida","images/errores/accion_desconocida.jpg");
+        $controller->showError("Se ha ejecutado una acción desconocida","images/errores/accion_desconocida.jpg");
     }    
 }
     

@@ -13,4 +13,9 @@ class AdminView{
         $this->smarty->display('templates/showHome.tpl');
     }
 
+    public function showMessage($msg) {
+        $this->smarty->assign('mensaje', $msg);
+        $this->smarty->display('templates/showMessage.tpl');
+    }
+
 }
