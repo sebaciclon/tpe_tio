@@ -18,34 +18,27 @@ class AdminController{
         $this->view->showHome();
     }
 
-        public function checkIn(){
-            if(empty($_POST['name']) || empty($_POST['username']) || empty($_POST['psw'])) {   
-                $this->view->showMessage("No ingreso todos los datos requeridos");
-                //echo "No ingreso todos los datos requeridos";
-                
-            } else {
-                $name = $_POST['name'];
-                $username = $_POST['username'];
-                $password = $_POST['psw'];
-                $usuarios = $this->model->getAllAdmin();
-                            
-                $longitud = count($usuarios);
-                for($i = 0; $i < $longitud; $i ++) {
-                    if($usuarios[$i]->usuario == $username) {
-                        $this->view->showMessage("El nombre de usuario " .$username. " ya esta utilizado, intente con otro");
-                        //echo "El nombre de usuario " .$username. " Ya existia en la base de datos, vuelva a intentarlo";
-                        die();
-                    } 
-                }
-                if($i == $longitud) {
-                    $this->model->saveUser($name, $username, $password);
-                    $this->view->showMessage("Usuario " .$username. " guardado correctamente");
-                    echo "Usuario guardado correctamente";
-                }
+    public function checkIn(){
+        if(empty($_POST['name']) || empty($_POST['username']) || empty($_POST['psw'])) {   
+            $this->view->showMessage("No ingreso todos los datos requeridos");
+            
+        } else {
+            $name = $_POST['name'];
+            $username = $_POST['username'];
+            $password = $_POST['psw'];
+            $usuarios = $this->model->getAllAdmin();
+                        
+            $longitud = count($usuarios);
+            for($i = 0; $i < $longitud; $i ++) {
+                if($usuarios[$i]->usuario == $username) {
+                    $this->view->showMessage("El nombre de usuario " .$username. " ya esta utilizado, intente con otro");
+                    die();
+                } 
+            }
+            if($i == $longitud) {
+                $this->model->saveUser($name, $username, $password);
+                $this->view->showMessage("Usuario " .$username. " guardado correctamente");
             }
         }
-
-        
-
-
+    }
 }
